@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A plain-language description of the Corruption and Trust Dynamics model: how corruption erodes trust. With audio narration.">
+<title>How Corruption Erodes Trust: A Small Society and Its Rules</title>
+<style>
+:root {
+color-scheme: light;
+--canvas: #f1e9dd;
+--paper: #fffdf8;
+--ink: #322a24;
+--muted: #7b6a5c;
+--accent: #8b3a2b;
+--accent-dark: #642519;
+--accent-soft: #f4e3d9;
+--line: #ddd0be;
+--link: #2f6a72;
+--focus: #1f5c64;
+--shadow: 0 18px 48px rgba(78, 51, 36, 0.13);
+}
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; background: var(--canvas); }
+body {
+margin: 0;
+color: var(--ink);
+background:
+radial-gradient(circle at 12% 7%, rgba(255, 255, 255, 0.92), transparent 29rem),
+radial-gradient(circle at 88% 24%, rgba(203, 152, 131, 0.24), transparent 27rem),
+var(--canvas);
+font-family: Aptos, Calibri, "Segoe UI", Arial, sans-serif;
+font-size: 17px;
+line-height: 1.6;
+}
+.site-bar {
+width: min(1080px, calc(100% - 32px));
+margin: 20px auto 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 14px;
+color: var(--muted);
+font-size: 0.82rem;
+}
+.site-bar > a {
+flex: none;
+color: var(--accent-dark);
+font-weight: 700;
+white-space: nowrap;
+text-decoration: none;
+}
+.site-bar > a:hover { color: var(--link); }
+.site-bar > a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.site-label { flex: 1 1 auto; text-align: center; letter-spacing: 0.04em; }
+.lang-switch {
+display: inline-flex;
+flex: none;
+gap: 3px;
+padding: 3px;
+background: #ffffff;
+border: 1px solid var(--line);
+border-radius: 999px;
+box-shadow: 0 2px 6px rgba(78, 51, 36, 0.10);
+}
+.lang-opt {
+display: inline-flex;
+min-width: 58px;
+min-height: 30px;
+align-items: center;
+justify-content: center;
+padding: 0 13px;
+color: var(--accent-dark);
+background: transparent;
+border-radius: 999px;
+font-size: 0.75rem;
+font-weight: 800;
+letter-spacing: 0.08em;
+line-height: 1.1;
+text-transform: uppercase;
+text-decoration: none;
+transition: background 150ms ease, color 150ms ease;
+}
+.lang-opt:hover { color: var(--accent-dark); background: var(--accent-soft); }
+.lang-opt[aria-current] { color: #ffffff; background: var(--accent); box-shadow: 0 1px 3px rgba(100,37,25,.35); }
+.lang-opt:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+main.document {
+width: min(1080px, calc(100% - 32px));
+margin: 16px auto 34px;
+padding: 64px 76px 80px;
+background: var(--paper);
+border: 1px solid var(--line);
+border-radius: 14px;
+box-shadow: var(--shadow);
+}
+h1, h2, h3 { text-wrap: balance; }
+h1 {
+margin: 0 0 18px;
+color: var(--accent-dark);
+font-family: Georgia, "Times New Roman", serif;
+font-size: clamp(2rem, 4vw, 2.75rem);
+font-weight: 500;
+line-height: 1.12;
+letter-spacing: -0.025em;
+}
+.doc-byline {
+display: grid;
+gap: 2px;
+margin: 0 0 32px;
+padding: 0 0 16px;
+color: var(--muted);
+border-bottom: 1px solid var(--line);
+font-size: 0.85rem;
+line-height: 1.45;
+}
+.doc-byline .byline-name { color: var(--ink); font-size: 0.95rem; font-weight: 700; }
+.doc-byline .byline-copy { margin-top: 4px; font-size: 0.78rem; }
+.doc-byline a { color: var(--link); }
+h2 {
+margin: 46px 0 15px;
+padding-top: 10px;
+color: var(--accent-dark);
+font-size: 1.46rem;
+line-height: 1.25;
+border-top: 1px solid var(--line);
+}
+h3 {
+margin: 30px 0 10px;
+color: #96503f;
+font-size: 1.13rem;
+line-height: 1.3;
+}
+p { margin: 0 0 0.92em; }
+ul, ol { margin: 0.4em 0 1.05em; padding-left: 1.55em; }
+li { margin: 0.3em 0; }
+a { color: var(--link); text-underline-offset: 0.15em; }
+.model-link { font-weight: 700; }
+.model-link::after { content: "\00a0\25b8"; font-size: 0.86em; }
+strong { color: #4a352b; }
+code {
+padding: 0.1em 0.34em;
+color: #7a3225;
+background: #f5e7e0;
+border-radius: 4px;
+font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+font-size: 0.84em;
+}
+.narration {
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+gap: 11px;
+margin: 0 0 34px;
+padding: 12px 15px;
+background: var(--accent-soft);
+border: 1px solid var(--line);
+border-radius: 12px;
+}
+.narration-btn {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+min-height: 40px;
+padding: 0 18px 0 15px;
+color: #ffffff;
+background: var(--accent);
+border: 1px solid var(--accent);
+border-radius: 999px;
+font-family: inherit;
+font-size: 0.84rem;
+font-weight: 800;
+line-height: 1.2;
+cursor: pointer;
+transition: background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+.narration-btn:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(100, 37, 25, 0.18); }
+.narration-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.narration-btn svg { flex: none; width: 14px; height: 14px; fill: currentColor; }
+.narration-btn .icon-pause { display: none; }
+.narration-btn.is-playing .icon-play { display: none; }
+.narration-btn.is-playing .icon-pause { display: inline; }
+.narration-btn--compact { min-height: 35px; padding: 0 15px 0 12px; font-size: 0.78rem; }
+.narration audio { display: none; }
+.narration-note a { color: var(--link); }
+.narration-seek {
+flex: 1 1 150px;
+min-width: 110px;
+height: 6px;
+margin: 0;
+accent-color: var(--accent);
+cursor: pointer;
+}
+.narration-time {
+flex: none;
+color: var(--accent-dark);
+font-size: 0.78rem;
+font-weight: 700;
+font-variant-numeric: tabular-nums;
+}
+.narration-note { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 0.76rem; line-height: 1.4; }
+figure {
+margin: 32px auto 26px;
+padding: 15px;
+background: #ffffff;
+border: 1px solid var(--line);
+border-radius: 11px;
+break-inside: avoid;
+overflow-x: auto;
+}
+figure img,
+figure svg,
+img.diagram {
+display: block;
+width: 100%;
+min-width: 660px;
+height: auto;
+margin: 0 auto;
+}
+figcaption {
+margin-top: 13px;
+color: var(--muted);
+font-size: 0.88rem;
+line-height: 1.45;
+}
+figcaption b, figcaption strong { color: var(--ink); font-weight: 700; }
+.table-wrap { width: 100%; margin: 12px 0 30px; overflow-x: auto; }
+table {
+width: 100%;
+margin: 12px 0 30px;
+border-collapse: collapse;
+font-size: 0.9rem;
+line-height: 1.42;
+}
+thead { background: var(--accent-soft); }
+th, td {
+padding: 10px 11px;
+vertical-align: top;
+text-align: left;
+border: 1px solid var(--line);
+}
+th { color: var(--accent-dark); font-weight: 700; }
+tbody tr:nth-child(even) { background: #fbf6f1; }
+.page-footer {
+width: min(1080px, calc(100% - 32px));
+margin: 0 auto 30px;
+color: var(--muted);
+text-align: center;
+font-size: 0.78rem;
+line-height: 1.5;
+}
+@media (max-width: 760px) {
+body { font-size: 16px; }
+.site-bar { margin-top: 14px; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.site-label { display: none; }
+main.document { width: 100%; margin: 12px 0 0; padding: 36px 20px 56px; border-inline: 0; border-radius: 0; }
+figure { margin-inline: -8px; padding: 9px; }
+.narration { margin-inline: 0; }
+.narration-btn { flex: 1 1 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+.narration-btn, .lang-opt { transition: none; }
+.narration-btn:hover { transform: none; }
+}
+@media print {
+@page { size: A4; margin: 18mm 17mm 20mm; }
+html, body { background: #ffffff; }
+body { color: #000000; font-size: 10.5pt; line-height: 1.42; }
+.site-bar, .page-footer, .narration { display: none; }
+main.document { width: auto; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+h1 { color: #000000; font-size: 22pt; }
+.doc-byline { padding: 0; color: #333333; background: transparent; border: 0; }
+h2 { margin-top: 24pt; color: #000000; font-size: 14pt; break-after: avoid; }
+h3 { color: #000000; break-after: avoid; }
+figure { padding: 0; border: 0; overflow: visible; }
+figure img, figure svg, img.diagram { min-width: 0; }
+table { font-size: 8.5pt; break-inside: auto; }
+tr, figure, figcaption { break-inside: avoid; }
+thead { display: table-header-group; }
+a { color: inherit; text-decoration: none; }
+.model-link::after { content: ""; }
+}
+</style>
+</head>
+<body>
+  <nav class="site-bar" aria-label="Document navigation">
+    <a href="index.html">← Overview</a>
+    <span class="site-label">Plain-language version · Corruption and Trust Dynamics</span>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <a class="lang-opt" href="corruption-simple_en.html" hreflang="en" lang="en" title="English" aria-current="page">EN</a>
+      <a class="lang-opt" href="corruption-simple_ua.html" hreflang="uk" lang="uk" title="Українська">UA</a>
+    </div>
+  </nav>
+  <main class="document">
+<h1>How Corruption Erodes Trust: A Small Society and Its Rules</h1>
+<p class="doc-byline">
+<span class="byline-name">Artem Serdyuk</span>
+<span class="byline-affil">National University of Kyiv-Mohyla Academy · <a href="mailto:a.serdiuk@ukma.edu.ua">a.serdiuk@ukma.edu.ua</a></span>
+<span class="byline-copy">August 2026 · © 2026 Artem Serdyuk. All rights reserved.</span>
+</p>
+<div class="narration">
+<button class="narration-btn" type="button" aria-pressed="false" data-label-play="Listen to this page" data-label-pause="Pause narration"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path class="icon-play" d="M2.6 1 12 7l-9.4 6z"/><path class="icon-pause" d="M2.6 1.3h3.1v11.4H2.6zm5.7 0h3.1v11.4H8.3z"/></svg><span class="narration-btn-label">Listen to this page</span></button>
+<input class="narration-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Narration position">
+<span class="narration-time">0:00 / –:––</span>
+<audio class="narration-audio" preload="metadata" src="corruption_simple_en.mp3"></audio>
+<p class="narration-note">Audio narration of this page. <noscript><a href="corruption_simple_en.mp3">Open the MP3 file</a></noscript></p>
+</div>
+<p>Consider a familiar situation. Money is allocated for a road repair, the contractor is paid, yet the road is still broken. Most residents have a good idea where the money went, but no one is held accountable. A year later, people say they no longer expect anything from local government. That change in expectations matters. When people expect nothing, they stop reporting abuse, taking part in public life, or even paying attention. And that makes the next misuse of public money easier.</p>
+<p>This study examines that feedback loop: from stolen public money to lost trust, and from lost trust to conditions that make further corruption more likely. To trace it, we created a small artificial society, gave its members clear rules, and watched what developed over time.</p>
+<p>The society is closed. No one enters and no one leaves. Everyone belongs to one of three groups. Most are ordinary citizens. Some are officials working in public offices that manage a road fund, a hospital budget, or a school renovation. A small group serve as watchdogs—activists and journalists who examine what those offices do. People can change roles. A citizen may be hired as an official. An official who is caught, punished, and removed loses the post and moves into a reserve. A citizen whose trust falls low enough may become a watchdog. The roles change, but the total population does not.</p>
+<figure><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 390">
+  <defs>
+    <style>
+      .node-label { font-family: 'Times New Roman', Times, serif; font-size: 20px; font-weight: 700; fill: #000; }
+      .node-label-white { font-family: 'Times New Roman', Times, serif; font-size: 20px; font-weight: 700; fill: #FFF; }
+      .detail { font-family: 'Times New Roman', Times, serif; font-size: 16px; fill: #000; }
+      .detail-white { font-family: 'Times New Roman', Times, serif; font-size: 16px; fill: #FFF; }
+      .edge { font-family: 'Times New Roman', Times, serif; font-size: 18px; fill: #000; }
+      .edge-bold { font-family: 'Times New Roman', Times, serif; font-size: 18px; font-weight: 700; fill: #000; }
+      .box-money { fill: #FFF; stroke: #000; stroke-width: 2; }
+      .box-env { fill: #666; stroke: #FFF; stroke-width: 2; }
+      .box-civil { fill: url(#stripes); stroke: #555; stroke-width: 2; }
+      .text-bg { fill: #FFF; stroke: none; }
+      .frame { fill: none; stroke: #333; stroke-width: 2; }
+      .frame-dashed { fill: none; stroke: #333; stroke-width: 2; stroke-dasharray: 14,14; }
+      .arrow { fill: none; stroke: #000; stroke-width: 2; marker-end: url(#arrowhead); }
+      .arrow-dashed { fill: none; stroke: #000; stroke-width: 2; stroke-dasharray: 8,6; marker-end: url(#arrowhead); }
+      .connector { fill: none; stroke: #333; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000"/>
+    </marker>
+    <pattern id="stripes" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#CCC"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#333" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFF"/>
+
+  <!-- Conservation frame -->
+  <g id="conservation-frame">
+    <rect x="20" y="20" width="1000" height="320" rx="3" class="frame-dashed"/>
+    <text x="520" y="320" text-anchor="middle" class="detail">
+      <tspan x="520" dy="0">total = public + reserve + active is fixed; transitions use set breed; nobody is created or destroyed</tspan>
+    </text>
+  </g>
+  <!-- States -->
+  <g id="states">
+    <rect x="80" y="145" width="220" height="70" rx="8" class="box-money"/>
+    <text x="190" y="185" text-anchor="middle" class="node-label">
+      <tspan x="190" dy="0">PUBLIC (citizen)</tspan>
+    </text>
+    <rect x="410" y="145" width="220" height="70" rx="8" class="box-money"/>
+    <text x="520" y="185" text-anchor="middle" class="node-label">
+      <tspan x="520" dy="0">RESERVE (off duty)</tspan>
+    </text>
+    <rect x="740" y="145" width="220" height="70" rx="8" class="box-money"/>
+    <text x="850" y="185" text-anchor="middle" class="node-label">
+      <tspan x="850" dy="0">ACTIVE (in office)</tspan>
+    </text>
+  </g>
+  <!-- Transitions -->
+  <g id="transitions">
+    <path d="M 190 145 C 310 55, 730 55, 850 145" class="arrow"/>
+    <text x="520" y="72" text-anchor="middle" class="edge">
+      <tspan x="520" dy="0">recruit (dissatisfaction / understaffing;</tspan>
+      <tspan x="520" dy="20">needs floor and cap headroom)</tspan>
+    </text>
+    <line x1="630" y1="160" x2="740" y2="160" class="arrow"/>
+    <text x="685" y="140" text-anchor="middle" class="edge">
+      <tspan x="685" dy="0">redeploy (fast)</tspan>
+    </text>
+    <line x1="740" y1="200" x2="630" y2="200" class="arrow"/>
+    <text x="685" y="236" text-anchor="middle" class="edge">
+      <tspan x="685" dy="0">lay off (overstaffed / unfunded)</tspan>
+      <tspan x="685" dy="20">or ruined (caught, broke)</tspan>
+    </text>
+    <line x1="410" y1="180" x2="300" y2="180" class="arrow"/>
+    <text x="355" y="138" text-anchor="middle" class="edge">
+      <tspan x="355" dy="0">demobilize (idle timeout)</tspan>
+    </text>
+  </g>
+  <!-- Notes -->
+  <g id="notes">
+    <text x="520" y="285" text-anchor="middle" class="detail">
+      <tspan x="520" dy="0">recruit pulls from RESERVE first, then PUBLIC</tspan>
+    </text>
+    <text x="520" y="370" text-anchor="middle" class="detail">
+      <tspan x="520" dy="0">watchdogs run the same three states, but distrust recruits them and recovered trust lays them off</tspan>
+    </text>
+  </g>
+</svg>
+<figcaption><b>Figure 1.</b> Three roles in a fixed population: citizen, reserve, and active official. People move between roles; no one is added or removed.</figcaption></figure>
+<p>Each group follows its own rules.</p>
+<p>In every period, an official decides whether to divert some of the public money passing through the office. The decision weighs the possible gain against the risk of being caught. Two further details matter. First, corruption requires a partner. Public money moves through procedures that need more than one signature, so an official needs a trusted colleague. Schemes then grow along chains of trusted relationships. Second, there is safety in numbers. When most people in an office are already involved, it becomes harder to single out any one person.</p>
+<p>No official is permanently honest or corrupt. Behaviour changes with experience. Someone who diverts money and gets away with it becomes a little more willing to try again. Someone who is caught pays a penalty, becomes more cautious, and may name an accomplice in exchange for a lighter punishment. Enforcement can therefore attack a scheme from within: not only by removing people, but also by breaking the trust between them.</p>
+<p>A few officials become patrons. A patron does not move the money directly. Instead, they take a cut from officials below them, offer protection, and remain beyond routine inspection because they sign nothing. In this society, power is not a box on an organization chart. It is the number of people who depend on you.</p>
+<p>The central feature of the society is that detecting corruption and punishing it are separate capacities held by different actors. Watchdogs can expose misconduct and tell the public about it, but they cannot impose sanctions. Only the state audit can punish, and it can inspect only a few offices at a time—usually those where misconduct has recently been exposed. This separation allows the society to settle into a condition all too familiar in Ukraine: everyone can see the corruption, yet no one is punished.</p>
+<figure><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 905 615">
+  <defs>
+    <style>
+      .node-label { font-family: 'Times New Roman', Times, serif; font-size: 20px; font-weight: 700; fill: #000; }
+      .node-label-white { font-family: 'Times New Roman', Times, serif; font-size: 20px; font-weight: 700; fill: #FFF; }
+      .detail { font-family: 'Times New Roman', Times, serif; font-size: 16px; fill: #000; }
+      .detail-white { font-family: 'Times New Roman', Times, serif; font-size: 16px; fill: #FFF; }
+      .edge { font-family: 'Times New Roman', Times, serif; font-size: 18px; fill: #000; }
+      .edge-bold { font-family: 'Times New Roman', Times, serif; font-size: 18px; font-weight: 700; fill: #000; }
+      .box-money { fill: #FFF; stroke: #000; stroke-width: 2; }
+      .box-env { fill: #666; stroke: #FFF; stroke-width: 2; }
+      .box-civil { fill: url(#stripes); stroke: #555; stroke-width: 2; }
+      .text-bg { fill: #FFF; stroke: none; }
+      .frame { fill: none; stroke: #333; stroke-width: 2; }
+      .frame-dashed { fill: none; stroke: #333; stroke-width: 2; stroke-dasharray: 14,14; }
+      .arrow { fill: none; stroke: #000; stroke-width: 2; marker-end: url(#arrowhead); }
+      .arrow-dashed { fill: none; stroke: #000; stroke-width: 2; stroke-dasharray: 8,6; marker-end: url(#arrowhead); }
+      .connector { fill: none; stroke: #333; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000"/>
+    </marker>
+    <pattern id="stripes" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#CCC"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#333" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFF"/>
+
+  <!-- Central resource node -->
+  <g id="central-node">
+    <rect x="350" y="270" width="225" height="70" rx="3" class="box-env"/>
+    <text x="462" y="303" text-anchor="middle" class="node-label-white">
+      <tspan x="462" dy="0">Resource node</tspan>
+    </text>
+    <text x="462" y="327" text-anchor="middle" class="detail-white">
+      <tspan x="462" dy="0">(audited?)</tspan>
+    </text>
+  </g>
+  <!-- Disclosure channel -->
+  <g id="disclosure-channel">
+    <text x="180" y="22" text-anchor="middle" class="edge-bold">
+      <tspan x="180" dy="0">DISCLOSURE (bottom-up)</tspan>
+    </text>
+    <rect x="30" y="40" width="300" height="65" rx="3" class="box-civil"/>
+    <rect x="44" y="49" width="272" height="47" rx="2" class="text-bg"/>
+    <text x="180" y="70" text-anchor="middle" class="node-label">
+      <tspan x="180" dy="0">Citizen trust falls</tspan>
+    </text>
+    <rect x="30" y="135" width="300" height="70" rx="3" class="box-civil"/>
+    <rect x="44" y="144" width="272" height="52" rx="2" class="text-bg"/>
+    <text x="180" y="165" text-anchor="middle" class="node-label">
+      <tspan x="180" dy="0">What citizens SEE</tspan>
+    </text>
+    <text x="180" y="190" text-anchor="middle" class="detail">
+      <tspan x="180" dy="0">(revealed corruption)</tspan>
+    </text>
+    <rect x="30" y="230" width="300" height="70" rx="3" class="box-env"/>
+    <text x="180" y="260" text-anchor="middle" class="node-label-white">
+      <tspan x="180" dy="0">Disclosure at the node</tspan>
+    </text>
+    <rect x="30" y="330" width="300" height="60" rx="3" class="box-env"/>
+    <text x="180" y="360" text-anchor="middle" class="node-label-white">
+      <tspan x="180" dy="0">Audit reveal (if audited)</tspan>
+    </text>
+    <rect x="30" y="420" width="300" height="75" rx="3" class="box-civil"/>
+    <rect x="44" y="429" width="272" height="57" rx="2" class="text-bg"/>
+    <text x="180" y="450" text-anchor="middle" class="node-label">
+      <tspan x="180" dy="0">Watchdogs covering the node</tspan>
+    </text>
+    <text x="180" y="475" text-anchor="middle" class="detail">
+      <tspan x="180" dy="0">(monitoring activity)</tspan>
+    </text>
+    <line x1="180" y1="330" x2="180" y2="300" class="arrow"/>
+    <path d="M 180 420 L 15 420 L 15 265 L 30 265" class="arrow"/>
+    <line x1="180" y1="230" x2="180" y2="205" class="arrow"/>
+    <line x1="180" y1="135" x2="180" y2="105" class="arrow"/>
+    <path d="M 350 305 L 340 305 L 340 265 L 330 265" class="connector"/>
+  </g>
+  <!-- Enforcement channel -->
+  <g id="enforcement-channel">
+    <text x="742" y="22" text-anchor="middle" class="edge-bold">
+      <tspan x="742" dy="0">ENFORCEMENT (top-down)</tspan>
+    </text>
+    <rect x="625" y="60" width="250" height="70" rx="3" class="box-env"/>
+    <text x="750" y="90" text-anchor="middle" class="node-label-white">
+      <tspan x="750" dy="0">State audit (if audited)</tspan>
+    </text>
+    <rect x="625" y="160" width="250" height="70" rx="3" class="box-env"/>
+    <text x="750" y="190" text-anchor="middle" class="node-label-white">
+      <tspan x="750" dy="0">Enforcement at the node</tspan>
+    </text>
+    <rect x="625" y="260" width="250" height="75" rx="3" class="box-money"/>
+    <text x="750" y="290" text-anchor="middle" class="node-label">
+      <tspan x="750" dy="0">Detection risk</tspan>
+    </text>
+    <text x="750" y="315" text-anchor="middle" class="detail">
+      <tspan x="750" dy="0">officials face</tspan>
+    </text>
+    <rect x="625" y="365" width="250" height="70" rx="3" class="box-money"/>
+    <text x="750" y="395" text-anchor="middle" class="node-label">
+      <tspan x="750" dy="0">Deters capture</tspan>
+    </text>
+    <line x1="750" y1="130" x2="750" y2="160" class="arrow"/>
+    <line x1="750" y1="230" x2="750" y2="260" class="arrow"/>
+    <line x1="750" y1="335" x2="750" y2="365" class="arrow"/>
+    <path d="M 575 305 L 600 305 L 600 195 L 625 195" class="connector"/>
+  </g>
+  <!-- Insight callout -->
+  <g id="insight-callout">
+    <rect x="125" y="530" width="655" height="70" rx="3" class="frame-dashed"/>
+    <text x="452" y="558" text-anchor="middle" class="edge-bold">
+      <tspan x="452" dy="0">Wide disclosure + low enforcement -&gt;</tspan>
+    </text>
+    <text x="452" y="583" text-anchor="middle" class="edge">
+      <tspan x="452" dy="0">corruption is SEEN but not PUNISHED (the weak-state trap)</tspan>
+    </text>
+  </g>
+</svg>
+<figcaption><b>Figure 2.</b> Seeing and punishing are separate. Watchdogs and audit findings shape what the public sees; only the state audit creates the risk of punishment.</figcaption></figure>
+<p>Each citizen has a level of trust in public institutions. It changes in response to three signals. The first is the performance of the nearest office: is the clinic open, and was the road repaired? The second is what nearby citizens think, provided their views are not too far from the citizen’s own. The third is the wider mood of the neighbourhood. Once distrust passes a certain threshold, it begins to spread under its own momentum.</p>
+<p>Two well-established patterns from survey research are built into these rules. Trust falls faster than it recovers. And once someone has lost trust, they need much stronger positive evidence to regain it than they needed to lose it.</p>
+<figure><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 610">
+  <defs>
+    <style>
+      .node-label { font-family: 'Times New Roman', Times, serif; font-size: 20px; font-weight: 700; fill: #000; }
+      .node-label-white { font-family: 'Times New Roman', Times, serif; font-size: 20px; font-weight: 700; fill: #FFF; }
+      .detail { font-family: 'Times New Roman', Times, serif; font-size: 16px; fill: #000; }
+      .detail-white { font-family: 'Times New Roman', Times, serif; font-size: 16px; fill: #FFF; }
+      .edge { font-family: 'Times New Roman', Times, serif; font-size: 18px; fill: #000; }
+      .edge-bold { font-family: 'Times New Roman', Times, serif; font-size: 18px; font-weight: 700; fill: #000; }
+      .box-money { fill: #FFF; stroke: #000; stroke-width: 2; }
+      .box-env { fill: #666; stroke: #FFF; stroke-width: 2; }
+      .box-civil { fill: url(#stripes); stroke: #555; stroke-width: 2; }
+      .text-bg { fill: #FFF; stroke: none; }
+      .frame { fill: none; stroke: #333; stroke-width: 2; }
+      .frame-dashed { fill: none; stroke: #333; stroke-width: 2; stroke-dasharray: 14,14; }
+      .arrow { fill: none; stroke: #000; stroke-width: 2; marker-end: url(#arrowhead); }
+      .arrow-dashed { fill: none; stroke: #000; stroke-width: 2; stroke-dasharray: 8,6; marker-end: url(#arrowhead); }
+      .connector { fill: none; stroke: #333; stroke-width: 2; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000"/>
+    </marker>
+    <pattern id="stripes" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#CCC"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#333" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFF"/>
+
+  <!-- Trust inputs -->
+  <g id="trust-inputs">
+    <rect x="30" y="30" width="300" height="70" rx="3" class="box-civil"/>
+    <rect x="44" y="39" width="272" height="52" rx="2" class="text-bg"/>
+    <text x="180" y="60" text-anchor="middle" class="node-label">
+      <tspan x="180" dy="0">Local service quality</tspan>
+    </text>
+    <text x="180" y="85" text-anchor="middle" class="detail">
+      <tspan x="180" dy="0">(how nearby institutions serve)</tspan>
+    </text>
+    <rect x="30" y="140" width="300" height="70" rx="3" class="box-civil"/>
+    <rect x="44" y="149" width="272" height="52" rx="2" class="text-bg"/>
+    <text x="180" y="170" text-anchor="middle" class="node-label">
+      <tspan x="180" dy="0">Neighbors&#x27; trust</tspan>
+    </text>
+    <text x="180" y="195" text-anchor="middle" class="detail">
+      <tspan x="180" dy="0">(within a confidence bound)</tspan>
+    </text>
+    <rect x="30" y="250" width="300" height="70" rx="3" class="box-env"/>
+    <text x="180" y="280" text-anchor="middle" class="node-label-white">
+      <tspan x="180" dy="0">Disclosed corruption</tspan>
+    </text>
+    <text x="180" y="305" text-anchor="middle" class="detail-white">
+      <tspan x="180" dy="0">near the citizen</tspan>
+    </text>
+  </g>
+  <!-- Citizen trust node -->
+  <g id="trust-node">
+    <rect x="410" y="135" width="310" height="100" rx="3" class="box-civil"/>
+    <rect x="424" y="152" width="282" height="66" rx="2" class="text-bg"/>
+    <text x="565" y="165" text-anchor="middle" class="node-label">
+      <tspan x="565" dy="0">Citizen trust</tspan>
+    </text>
+    <text x="565" y="190" text-anchor="middle" class="detail">
+      <tspan x="565" dy="0">erodes fast, recovers slow;</tspan>
+      <tspan x="565" dy="18">own hysteresis loop</tspan>
+    </text>
+  </g>
+  <!-- Cascade decision -->
+  <g id="cascade-decision">
+    <polygon points="565 275, 825 365, 565 455, 305 365" class="box-civil"/>
+    <rect x="410" y="332" width="310" height="58" rx="2" class="text-bg"/>
+    <text x="565" y="350" text-anchor="middle" class="node-label">
+      <tspan x="565" dy="0">Distrusting-neighbor share</tspan>
+    </text>
+    <text x="565" y="375" text-anchor="middle" class="detail">
+      <tspan x="565" dy="0">&gt;= own threshold?</tspan>
+    </text>
+    <rect x="165" y="510" width="380" height="80" rx="3" class="box-civil"/>
+    <rect x="179" y="519" width="352" height="62" rx="2" class="text-bg"/>
+    <text x="355" y="540" text-anchor="middle" class="node-label">
+      <tspan x="355" dy="0">Flip to distrust</tspan>
+    </text>
+    <text x="355" y="565" text-anchor="middle" class="detail">
+      <tspan x="355" dy="0">vulnerable cluster spans the network</tspan>
+      <tspan x="355" dy="18">and can cascade (Watts)</tspan>
+    </text>
+    <rect x="610" y="520" width="280" height="70" rx="3" class="box-civil"/>
+    <rect x="624" y="529" width="252" height="52" rx="2" class="text-bg"/>
+    <text x="750" y="550" text-anchor="middle" class="node-label">
+      <tspan x="750" dy="0">Stay trusting</tspan>
+    </text>
+  </g>
+  <!-- Participation link -->
+  <g id="participation-link">
+    <rect x="970" y="155" width="270" height="70" rx="3" class="box-civil"/>
+    <rect x="984" y="164" width="242" height="52" rx="2" class="text-bg"/>
+    <text x="1105" y="185" text-anchor="middle" class="node-label">
+      <tspan x="1105" dy="0">Participation</tspan>
+    </text>
+    <rect x="970" y="270" width="270" height="75" rx="3" class="frame"/>
+    <text x="1105" y="298" text-anchor="middle" class="edge">
+      <tspan x="1105" dy="0">-&gt; watchdog activity -&gt;</tspan>
+    </text>
+    <text x="1105" y="323" text-anchor="middle" class="edge">
+      <tspan x="1105" dy="0">disclosure and enforcement</tspan>
+    </text>
+  </g>
+  <!-- Arrows -->
+  <g id="arrows">
+    <path d="M 330 65 L 370 65 L 370 165 L 410 165" class="arrow"/>
+    <line x1="330" y1="175" x2="410" y2="175" class="arrow"/>
+    <path d="M 330 285 L 370 285 L 370 210 L 410 210" class="arrow"/>
+    <line x1="565" y1="235" x2="565" y2="275" class="arrow"/>
+    <path d="M 305 365 L 305 510 L 355 510" class="arrow"/>
+    <text x="330" y="490" text-anchor="middle" class="edge">
+      <tspan x="330" dy="0">YES</tspan>
+    </text>
+    <path d="M 825 365 L 750 365 L 750 520" class="arrow"/>
+    <text x="752" y="496" text-anchor="middle" class="edge">
+      <tspan x="752" dy="0">NO</tspan>
+    </text>
+    <line x1="720" y1="190" x2="970" y2="190" class="arrow"/>
+    <text x="845" y="105" text-anchor="middle" class="edge-bold">
+      <tspan x="845" dy="0">+/-</tspan>
+    </text>
+    <text x="845" y="128" text-anchor="middle" class="edge">
+      <tspan x="845" dy="0">sign set by</tspan>
+    </text>
+    <text x="845" y="151" text-anchor="middle" class="edge">
+      <tspan x="845" dy="0">trust-participation-slope</tspan>
+    </text>
+    <line x1="1105" y1="225" x2="1105" y2="270" class="arrow"/>
+  </g>
+</svg>
+<figcaption><b>Figure 3.</b> How a citizen’s trust changes: three signals feed it, it falls faster than it recovers, and once enough neighbours have lost trust, distrust spreads.</figcaption></figure>
+<p>Research does not offer one clear answer about what distrustful citizens do. Distrust may mobilize people: they report abuse, protest, or join watchdog groups. But it may also demobilize them: they decide that nothing will help and withdraw. The model therefore allows both possibilities. In one version, rising distrust sends people towards public oversight. In the other, it drives them away. We can run and compare both.</p>
+<p>Two more rules determine how roles are filled. When an office needs staff, it first recalls someone from the reserve and only then recruits from the public. A new recruit brings the public mood into the office: a cynical society produces cynical recruits. But the office also socializes its newcomers, and a corrupt workplace teaches corrupt habits. Cleaning up an office is therefore not only a matter of catching offenders. It also depends on the environment the next recruit enters.</p>
+<p>War appears as a recurring shock. From time to time, emergency funding flows into public offices for reconstruction, urgent procurement, or aid. At the same time, emergency procedures weaken state checks. More money is available while inspection becomes less effective. Watchdogs continue to observe, but the audit pulls back. The gap between what is exposed and what is punished is therefore widest just when the stakes are highest.</p>
+<p>Over many periods, the society never simply settles down. Money arrives in waves; corruption follows the money; and the audit reacts to scandals. Trust may decline slowly, or it may collapse abruptly once enough citizens have given up. The society can fall into a trap where offices are corrupt, the public expects nothing, no one watches, and nothing changes. With strong enough observation and real sanctions, recovery is still possible. The research questions are where the tipping points lie and which policy levers can move them.</p>
+<p>Most of these rules draw on established research: corruption as a routine rather than simply a moral failing; the unequal ways in which trust is lost and regained; the operation of patronage networks; and the spread of opinions between neighbours. The main contribution is to place these mechanisms in one dynamic system and, above all, to model visibility and punishment as separate processes.</p>
+<p>The framework is implemented in <a class="model-link" href="model.html" title="Run the model in your browser">NetLogo</a> with several hundred agents. The user can vary public tolerance, audit capacity, and whether distrust mobilizes or demobilizes. Three presets represent an intermediate case, a weak state where corruption is visible but unpunished, and wartime funding shocks. On screen, two lines show how much corruption becomes visible to the public and how much leads to actual punishment. The gap between them is the model’s central quantity.</p>
+</main>
+  <footer class="page-footer">Artem Serdyuk · National University of Kyiv-Mohyla Academy · August 2026</footer>
+  <script>
+  (function () {
+    var blocks = Array.prototype.slice.call(document.querySelectorAll('.narration'));
+    var players = [];
+    blocks.forEach(function (block) {
+      var audio = block.querySelector('audio');
+      var button = block.querySelector('.narration-btn');
+      if (!audio || !button) { return; }
+      var label = button.querySelector('.narration-btn-label');
+      var seek = block.querySelector('.narration-seek');
+      var clock = block.querySelector('.narration-time');
+      var scrubbing = false;
+      players.push(audio);
+
+      function stamp(value) {
+        if (!isFinite(value) || value < 0) { return '\u2013:\u2013\u2013'; }
+        var minutes = Math.floor(value / 60);
+        var seconds = Math.floor(value % 60);
+        return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+      }
+      function paint() {
+        if (clock) { clock.textContent = stamp(audio.currentTime) + ' / ' + stamp(audio.duration); }
+        if (seek && !scrubbing && isFinite(audio.duration)) {
+          seek.max = audio.duration;
+          seek.value = audio.currentTime;
+        }
+      }
+      function state(playing) {
+        button.classList.toggle('is-playing', playing);
+        button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+        if (label) {
+          label.textContent = playing
+            ? button.getAttribute('data-label-pause')
+            : button.getAttribute('data-label-play');
+        }
+      }
+      button.addEventListener('click', function () {
+        if (audio.paused) {
+          players.forEach(function (other) { if (other !== audio) { other.pause(); } });
+          var started = audio.play();
+          if (started && started.catch) { started.catch(function () { state(false); }); }
+        } else {
+          audio.pause();
+        }
+      });
+      audio.addEventListener('play', function () { state(true); });
+      audio.addEventListener('pause', function () { state(false); });
+      audio.addEventListener('ended', function () { state(false); audio.currentTime = 0; paint(); });
+      audio.addEventListener('loadedmetadata', paint);
+      audio.addEventListener('timeupdate', paint);
+      if (seek) {
+        seek.addEventListener('input', function () {
+          scrubbing = true;
+          if (clock) { clock.textContent = stamp(Number(seek.value)) + ' / ' + stamp(audio.duration); }
+        });
+        seek.addEventListener('change', function () {
+          scrubbing = false;
+          audio.currentTime = Number(seek.value);
+        });
+      }
+      paint();
+    });
+  })();
+  </script>
+</body>
+</html>
